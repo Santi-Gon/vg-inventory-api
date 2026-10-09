@@ -86,7 +86,7 @@ describe('AppController', () => {
       mockVideojuegoRepo.find.mockResolvedValue(gamesMock);
       const resultado = await appController.getVideojuegos();
       expect(resultado.statusCode).toBe(200);
-      expect(resultado.data).toEqual(gamesMock);
+      expect(resultado.data).toEqual({data:gamesMock}); 
     });
   });
 

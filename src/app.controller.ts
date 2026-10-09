@@ -92,7 +92,7 @@ export class AppController {
     const data = await this.videojuegoRepo.find({
       relations: { categoria: false, plataforma: true },
     });
-    return this.ok({data:data);
+    return this.ok({data:data});
   }
 
   // ─────────────────────────────────────────────

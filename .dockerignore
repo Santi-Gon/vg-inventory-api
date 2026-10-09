@@ -1,5 +1,38 @@
+# Dependencias de Node
 node_modules
+
+# Build output (el stage builder lo regenera)
 dist
+
+# Archivos de base de datos SQLite (no deben ir en la imagen)
 *.sqlite
 *.sqlite-journal
 backup_*.sqlite
+
+# Variables de entorno locales (NUNCA subir secretos)
+.env
+.env.*
+!.env.example
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Control de versiones
+.git
+.gitignore
+
+# Cobertura de tests
+coverage
+
+# Archivos de sistema y editores
+.DS_Store
+Thumbs.db
+.vscode
+.idea
+
+# Archivos de desarrollo de NestJS no necesarios en producción
+*.spec.ts
+*.spec.js
+tester_socket.py

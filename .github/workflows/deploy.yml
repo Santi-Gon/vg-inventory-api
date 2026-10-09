@@ -30,23 +30,7 @@ jobs:
       - name: Instalar dependencias del proyecto
         run: npm ci --legacy-peer-deps
 
-      - name: Ejecutar pruebas con reporte de cobertura
+      - name: Ejecutar pruebas con reporte de cobertura (mínimo 70%)
         run: npm test -- --coverage --coverageReporters=text --coverageReporters=lcov
-
-      - name: Verificar umbral mínimo de cobertura (70%)
-        run: |
-          COVERAGE=$(npx jest --coverage --coverageReporters=json-summary --silent 2>/dev/null | grep -o '"pct":[0-9.]*' | head -1 | grep -o '[0-9.]*' || echo "0")
-          echo "Cobertura detectada: $COVERAGE%"
-          node -e "
-            const fs = require('fs');
-            const summary = JSON.parse(fs.readFileSync('coverage/coverage-summary.json', 'utf8'));
-            const lines = summary.total.lines.pct;
-            const statements = summary.total.statements.pct;
-            console.log('Cobertura de líneas:', lines + '%');
-            console.log('Cobertura de statements:', statements + '%');
-            if (lines < 70) {
-              console.error('ERROR: Cobertura de líneas ' + lines + '% es menor al 70% requerido');
-              process.exit(1);
-            }
-            console.log('OK: Cobertura cumple el umbral mínimo del 70%');
-          "
+        # Jest fallará automáticamente si la cobertura es menor al 70%
+        # gracias al coverageThreshold definido en package.json

@@ -89,9 +89,7 @@ export class AppController {
   // ─────────────────────────────────────────────
   @Get('videojuegos')
   async getVideojuegos() {
-    const data = await this.videojuegoRepo.find({
-      relations: { categoria: false, plataforma: true },
-  });
+    const data = await this.videojuegoRepo.find();
     return this.ok({data:data} );
   }
 

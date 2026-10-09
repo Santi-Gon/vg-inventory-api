@@ -5,6 +5,7 @@ Este repositorio contiene la implementación de una **API REST** para una tienda
 ## 🏗 Arquitectura del Proyecto
 
 La infraestructura automatizada se basa en las siguientes tecnologías:
+
 - **Backend:** NestJS (Node.js) + TypeScript
 - **Base de Datos:** SQLite (`better-sqlite3`)
 - **Contenedorización:** Docker (Multi-stage builds)
@@ -13,6 +14,7 @@ La infraestructura automatizada se basa en las siguientes tecnologías:
 - **Registry:** Docker Hub
 
 ### Flujo CI/CD Automatizado
+
 1. **Push a `main`:** Dispara el workflow de GitHub Actions.
 2. **Continuous Integration (CI):** Se levanta un entorno `ubuntu-latest`, se instalan dependencias y se ejecutan las pruebas automatizadas con Jest, asegurando que la **cobertura de código sea ≥ 70%**.
 3. **Delivery (CD - Build & Push):** Si los tests pasan, se hace login en Docker Hub usando GitHub Secrets, se construye la imagen a partir del `Dockerfile` y se empuja a Docker Hub con los tags `latest` y el SHA del commit.
@@ -23,17 +25,20 @@ La infraestructura automatizada se basa en las siguientes tecnologías:
 Si deseas correr el proyecto localmente sin instalar Node.js:
 
 1. Clona el repositorio:
+
    ```bash
    git clone https://github.com/Santi-Gon/vg-inventory-api.git
    cd vg-inventory-api
    ```
 
 2. Construye la imagen Docker localmente:
+
    ```bash
    docker build -t vg-inventory:local .
    ```
 
 3. Ejecuta el contenedor:
+
    ```bash
    docker run -d -p 8080:80 -p 6061:6061 --name my-vg-api vg-inventory:local
    ```
@@ -54,7 +59,9 @@ Para que el pipeline funcione, el repositorio debe contar con los siguientes **G
 - `EC2_SSH_KEY`: Llave privada `.pem` proporcionada por AWS.
 
 ### Configuración del Servidor (EC2)
+
 El servidor EC2 debe ser Ubuntu, tener Docker instalado y reglas de Security Group permitiendo:
+
 - Puerto `22` (TCP) para conexiones SSH (GitHub Actions).
 - Puerto `80` (TCP) para tráfico HTTP normal.
 - Puerto `8080` (TCP) apuntando al puerto 80 del contenedor.
@@ -68,3 +75,5 @@ El servidor EC2 debe ser Ubuntu, tener Docker instalado y reglas de Security Gro
 - `POST /api/categorias`: Crea categoría.
 - `GET /api/plataformas`: Lista plataformas.
 - `POST /api/plataformas`: Crea plataforma.
+
+Dios que si furule

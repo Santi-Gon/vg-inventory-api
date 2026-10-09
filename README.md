@@ -76,4 +76,4 @@ El servidor EC2 debe ser Ubuntu, tener Docker instalado y reglas de Security Gro
 - `GET /api/plataformas`: Lista plataformas.
 - `POST /api/plataformas`: Crea plataforma.
 
-Dios que si furule
+Hola
